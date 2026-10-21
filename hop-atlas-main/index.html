@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Интерактивный атлас производителей хмелесырья и хмелепродуктов — Атлас ХПП (НИР)</title>
+<meta name="description" content="Интерактивный атлас производителей хмелесырья и хмелепродуктов: живой глобус с 18 регионами производства хмеля, торговые потоки, хмелепродукты, прогноз рынка, калькулятор ёмкости рынка, технологическая карта и методические рекомендации. НИР, руководитель — Хоружий Л.И.">
+<meta name="theme-color" content="#F4ECD9">
+<meta name="color-scheme" content="light">
+<!-- Превью ссылки в мессенджерах. После публикации замените адрес картинки на полный,
+     например https://<имя>.github.io/hop-atlas/assets/og-image.jpg (см. README) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Атлас ХПП (НИР)">
+<meta property="og:title" content="Интерактивный атлас производителей хмелесырья и хмелепродуктов">
+<meta property="og:description" content="Живой глобус с 18 регионами производства хмеля, торговые потоки, хмелепродукты, прогноз рынка, калькулятор ёмкости рынка, технологическая карта и рекомендации НИР.">
+<meta property="og:image" content="assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="stylesheet" href="assets/css/fonts.css?v=hop30">
+<link rel="stylesheet" href="assets/css/main.css?v=hop30">
+<link rel="stylesheet" href="assets/css/print.css?v=hop30" media="print">
+</head>
+<body>
+<a class="skip" href="#main">Перейти к содержанию</a>
+
+<!-- Общие SVG-фильтры и штриховки -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <filter id="f-pen" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" seed="3"/>
+      <feDisplacementMap in="SourceGraphic" scale="1.1"/>
+    </filter>
+    <filter id="f-wash" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency=".05" numOctaves="4" seed="11" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="7" result="d"/>
+      <feGaussianBlur in="d" stdDeviation=".4"/>
+    </filter>
+    <filter id="f-stroke" x="-10%" y="-40%" width="120%" height="180%">
+      <feTurbulence type="fractalNoise" baseFrequency=".035 .4" numOctaves="3" seed="5" result="t"/>
+      <feDisplacementMap in="SourceGraphic" in2="t" scale="9"/>
+    </filter>
+    <pattern id="hatch-ink" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <path d="M0 0V5" stroke="#33281D" stroke-opacity=".32" stroke-width=".8"/>
+    </pattern>
+    <pattern id="hatch-gap" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="4" height="4" fill="#EFE5CC"/><path d="M0 0V4" stroke="#33281D" stroke-opacity=".3" stroke-width=".9"/>
+    </pattern>
+  </defs>
+</svg>
+
+<header class="masthead" id="masthead">
+  <div class="masthead__in">
+    <a class="brand" href="#top">
+      <span class="brand__seal" data-orn="seal" data-size="40"></span>
+      <span class="brand__text"><b>Атлас ХПП <i>(НИР)</i><span class="sr-only"> — в начало</span></b><small class="brand__sheet" id="cur-sheet">I · Производство</small></span>
+    </a>
+    <nav class="toc" id="toc" aria-label="Содержание атласа">
+      <button class="toc__btn" type="button" aria-expanded="false" aria-controls="toc-panel" aria-label="Содержание атласа">
+        <svg viewBox="0 0 16 12" aria-hidden="true" focusable="false"><path d="M1 1.5h14M1 6h14M1 10.5h14" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/></svg>
+        <span>Содержание</span>
+      </button>
+      <div class="toc__panel" id="toc-panel">
+        <p class="toc__title">Содержание атласа</p>
+        <ol class="toc__list">
+          <li><a href="#s1" data-sheet="I · Производство"><i>I</i><span class="toc__t">Производство</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s2" data-sheet="II · Торговля"><i>II</i><span class="toc__t">Торговля</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s3" data-sheet="III · Хмелепродукты"><i>III</i><span class="toc__t">Хмелепродукты</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s4" data-sheet="IV · Особенности"><i>IV</i><span class="toc__t">Особенности</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s5" data-sheet="V · Прогнозы"><i>V</i><span class="toc__t">Прогнозы</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s6" data-sheet="VI · Калькулятор"><i>VI</i><span class="toc__t">Калькулятор</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s7" data-sheet="VII · Техкарта"><i>VII</i><span class="toc__t">Техкарта</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li><a href="#s8" data-sheet="VIII · Рекомендации"><i>VIII</i><span class="toc__t">Рекомендации</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+          <li class="toc__team"><a href="#team" data-sheet="Разработчики"><i class="toc__leaf" aria-hidden="true"><svg viewBox="0 0 12 14" focusable="false"><path d="M6 13.5V8M6 8C3 8 1.2 6 1.5 3.2 4 3.4 6 5 6 8Zm0 0c3 0 4.8-2 4.5-4.8C8 3.4 6 5 6 8Z" fill="#B9C67F" stroke="currentColor" stroke-width=".8"/></svg></i><span class="toc__t">Разработчики</span><span class="toc__lead" aria-hidden="true"></span></a></li>
+        </ol>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ================= I · Титул, глобус и список регионов ================= -->
+<section class="spread" id="s1" aria-labelledby="h1">
+
+  <div class="hero" id="top">
+    <div class="cartouche">
+      <h1 class="display" id="h1">Интерактивный атлас производителей <em class="wash"><svg class="wash__stroke" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M4 22C40 10 90 14 150 13S260 8 296 18L294 30C250 36 180 30 120 33S30 38 6 32Z" fill="#C9D38F" opacity=".7" filter="url(#f-stroke)"/></svg>хмелесырья</em> <span class="nw">и&nbsp;<em class="wash"><svg class="wash__stroke" viewBox="0 0 300 40" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M6 24C50 14 100 17 160 15S262 12 294 20L292 31C246 35 182 31 124 34S34 37 8 33Z" fill="#C9D38F" opacity=".55" filter="url(#f-stroke)"/></svg>хмелепродуктов</em></span></h1>
+      <p class="nir" id="nir"><span class="nir__full">Создано в&nbsp;рамках НИР «Формирование и&nbsp;развитие хмелепродуктового подкомплекса (ХПП) в&nbsp;условиях цифровой трансформации и&nbsp;импортозамещения (1&nbsp;этап)». Руководитель&nbsp;— <b>Хоружий&nbsp;Л.И.</b></span><span class="nir__short">Создано в&nbsp;рамках НИР, руководитель&nbsp;— <b>Хоружий&nbsp;Л.И.</b></span></p>
+    </div>
+
+    <dl class="ledger" id="ledger" aria-label="Главные цифры атласа">
+      <div class="ledger__row"><dt>Регионов в&nbsp;атласе</dt><dd><span class="ledger__v" data-count="18">18</span></dd></div>
+      <div class="ledger__row"><dt>Сумма по&nbsp;18 регионам</dt><dd><span class="ledger__v" data-count="119939">119&nbsp;939</span><span class="u">т/год</span></dd></div>
+      <div class="ledger__row"><dt>Крупнейший регион — Халлертау</dt><dd><span class="ledger__v" data-count="43141">43&nbsp;141</span><span class="u">т/год</span></dd></div>
+      <div class="ledger__row"><dt>Прогноз мирового рынка на&nbsp;2031&nbsp;г.</dt><dd><span class="ledger__v" data-count="11.32" data-dec="2">11,32</span><span class="u">млрд&nbsp;долл. США</span></dd></div>
+    </dl>
+
+    <div class="hero__cta">
+      <a class="btn btn--primary" href="#atlas" data-open-atlas>Открыть атлас <svg class="ic ic--open" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M8.5 1.5h4v4M12.5 1.5 8 6M5.5 12.5h-4v-4M1.5 12.5 6 8" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a class="btn btn--secondary" href="#s6">Рассчитать ёмкость рынка <svg class="ic" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M1.5 7h10.5M7.6 2.6 12 7l-4.4 4.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+
+  <div class="stage-col">
+    <div class="stage" id="stage">
+      <h2 class="sr-only" id="globe-h">Глобус: мировое производство хмеля</h2>
+      <div class="stage__bar">
+        <span class="stage__lbl" id="views-lbl">Показать на&nbsp;глобусе:</span>
+        <div class="seg seg--views" role="group" aria-labelledby="views-lbl">
+          <button type="button" data-view="world" aria-pressed="true">Весь мир</button>
+          <button type="button" data-view="europe" aria-pressed="false">Европа</button>
+          <button type="button" data-view="usa" aria-pressed="false">США</button>
+          <button type="button" data-view="russia" aria-pressed="false">Россия</button>
+        </div>
+      </div>
+
+      <div class="globe-box" id="globe-box">
+        <svg class="globe-wash" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
+          <defs>
+            <radialGradient id="g-bloom" cx="45%" cy="42%" r="55%">
+              <stop offset="0" stop-color="#D9DBA9" stop-opacity=".85"/>
+              <stop offset=".62" stop-color="#E2D2A0" stop-opacity=".5"/>
+              <stop offset="1" stop-color="#E8D6AB" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <circle cx="50" cy="50" r="48" fill="url(#g-bloom)" filter="url(#f-wash)"/>
+        </svg>
+        <canvas class="globe-canvas" id="globe" tabindex="0" role="application" aria-roledescription="глобус"
+          aria-label="Глобус с 18 регионами производства хмеля" aria-describedby="globe-help"></canvas>
+        <svg class="globe-ring" id="globe-ring" aria-hidden="true" focusable="false"></svg>
+        <p class="globe-kbd" aria-hidden="true"><b>←&#8239;→&#8239;↑&#8239;↓</b> поворот · <b>+</b>&#8239;<b>−</b> приближение · <b>Enter</b> регион у&nbsp;центра · <b>N</b>&#8239;/&#8239;<b>P</b> следующий по&nbsp;объёму · <b>Esc</b> закрыть</p>
+        <p class="sr-only" id="globe-help">Стрелки клавиатуры поворачивают глобус, плюс и минус приближают и отдаляют. Enter открывает карточку региона, который ближе всего к центру; клавиши N и P (или PageDown и PageUp) открывают следующий и предыдущий регион по объёму. Escape закрывает карточку. Все регионы есть списком ниже, в разделе «Мировое производство хмеля».</p>
+        <p class="globe-hint" id="globe-hint" aria-hidden="true"></p>
+        <article class="rcard" id="rcard" hidden role="dialog" aria-modal="false" aria-labelledby="rcard-h"></article>
+      </div>
+
+      <div class="atlas-cta">
+        <button class="btn btn--primary atlas-btn" type="button" data-open-atlas>
+          <span class="atlas-btn__ic" aria-hidden="true">
+            <svg viewBox="0 0 40 40" focusable="false">
+              <g class="atlas-btn__globe"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 20h24M20 8c-5 3.6-5 20.4 0 24M20 8c5 3.6 5 20.4 0 24" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+              <g class="atlas-btn__map"><path d="M6 12l9.3-3 9.4 3L34 9v19l-9.3 3-9.4-3L6 31Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M15.3 9v19M24.7 12v19" fill="none" stroke="currentColor" stroke-width="1.5"/></g>
+            </svg>
+          </span>
+          Открыть атлас
+        </button>
+      </div>
+
+      <p class="view-cap" id="view-cap" aria-live="polite"><span class="hint--mouse">Поверните глобус мышью. Нажмите на&nbsp;шпалеру&nbsp;— откроется карточка региона.</span><span class="hint--touch">Поверните глобус пальцем. Коснитесь шпалеры&nbsp;— откроется карточка региона.</span></p>
+
+      <ul class="legend-line" aria-label="Условные знаки глобуса">
+        <li><span class="legend-line__ic" data-orn="icon-trellis"></span><span>Высота шпалеры&nbsp;— объём<span class="lg-x"> производства</span>, <span class="nw">т/год</span>; <span class="nw">насечка&nbsp;— 10&nbsp;000&nbsp;т</span></span><span class="ruler" aria-hidden="true"><i id="ruler-bar"></i><em id="ruler-val">10&nbsp;000&nbsp;т</em></span></li>
+        <li class="legend-line__flow" id="legend-flow" hidden><span class="legend-line__ic" data-orn="icon-flow"></span><span>Пунктир&nbsp;— экспорт, млн&nbsp;долл.&nbsp;США</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Все 18 регионов + топ-6 стран -->
+  <div class="workbench" id="production" aria-labelledby="prod-h">
+    <header class="sheet-head">
+      <h2 class="sheet-head__h" id="prod-h"><span class="sheet-n" aria-hidden="true">I</span>Мировое производство хмеля</h2>
+      <p class="lead">Все 18 регионов атласа по&nbsp;объёму производства, т/год. <span class="on-wide">Нажмите на&nbsp;регион&nbsp;— глобус повернётся к&nbsp;нему.</span><span class="on-narrow">Нажмите на&nbsp;регион&nbsp;— откроется его карточка.</span></p>
+    </header>
+    <ol class="rlist" id="rlist"></ol>
+    <p class="rlist__sum"><span>Сумма по&nbsp;18 регионам<span class="fn" aria-hidden="true" title="Рассчитано по данным атласа">*</span></span><b id="rlist-sum">119&nbsp;939&nbsp;т</b></p>
+    <figure class="chart" id="top6">
+      <figcaption class="chart__cap" id="top6-h"><span class="nw">Топ-6</span> стран по&nbsp;производству, 2025&nbsp;г., тыс.&nbsp;т</figcaption>
+      <div class="top6" id="top6-chart"></div>
+    </figure>
+    <p class="footnote"><span aria-hidden="true">*</span> Рассчитано по&nbsp;данным атласа.</p>
+    <details class="datanote" id="datanote">
+      <summary>Примечание к&nbsp;данным</summary>
+      <p id="datanote-text"></p>
+    </details>
+  </div>
+</section>
+
+<div class="sheet-rule sheet-rule--cone" aria-hidden="true"><span data-orn="divider"></span></div>
+
+<!-- ================= II · Торговые потоки ================= -->
+<section class="sheet" id="s2" aria-labelledby="s2-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s2-h"><span class="sheet-n" aria-hidden="true">II</span>Основные маршруты экспорта хмеля</h2>
+  </header>
+  <div class="trade">
+    <figure class="plate">
+      <div class="plate__frame" id="plate-frame">
+        <canvas class="plate__canvas" id="plate" role="img" aria-label="Карта: маршруты экспорта хмеля. Германия → США — 274 млн долл. США; США → Германия — 263 млн долл. США; Чехия → Германия — 55,7 млн долл. США (на врезке)."></canvas>
+        <div class="plate__inset" id="plate-inset">
+          <canvas class="plate__inset-canvas" id="plate-inset-canvas" aria-hidden="true"></canvas>
+          <p class="plate__inset-cap" id="inset-cap">Врезка: Чехия и&nbsp;Германия, крупнее</p>
+        </div>
+      </div>
+      <figcaption class="plate__legend">
+        <span class="legend-line__ic" data-orn="icon-flow"></span>
+        <span>Пунктир&nbsp;— экспорт хмеля, толщина линии&nbsp;— сумма. Концы маршрутов&nbsp;— крупнейшие регионы стран.</span>
+      </figcaption>
+    </figure>
+    <div class="trade__side">
+      <table class="tbl tbl--flows" id="flows-table">
+        <caption>Экспорт хмеля по&nbsp;маршрутам</caption>
+        <thead><tr><th scope="col">Маршрут</th><th scope="col" class="num">млн&nbsp;долл. США</th><th scope="col"><span class="sr-only">Шкала</span></th></tr></thead>
+        <tbody></tbody>
+      </table>
+      <p class="trade__text" id="trade-text"></p>
+      <p class="footnote"><span aria-hidden="true">*</span> Рассчитано по&nbsp;данным атласа.</p>
+    </div>
+  </div>
+</section>
+
+<div class="sheet-rule" aria-hidden="true"></div>
+
+<!-- ================= III · Хмелепродукты ================= -->
+<section class="sheet" id="s3" aria-labelledby="s3-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s3-h"><span class="sheet-n" aria-hidden="true">III</span>Хмелепродукты: мир и&nbsp;Россия</h2>
+  </header>
+  <div class="products">
+    <div class="products__main">
+      <table class="ptable" id="products-table"></table>
+      <blockquote class="quote" id="products-text"></blockquote>
+    </div>
+    <figure class="herbarium" aria-label="Ботанический рисунок: хмель обыкновенный">
+      <div class="herbarium__sheet">
+        <div class="herbarium__plant" data-orn="botanical-bare"></div>
+        <p class="herbarium__label"><i translate="no" lang="la">Humulus lupulus</i> <span translate="no" lang="la">L.</span> — хмель обыкновенный</p>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<div class="sheet-rule" aria-hidden="true"></div>
+
+<!-- ================= IV · Региональные особенности ================= -->
+<section class="sheet" id="s4" aria-labelledby="s4-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s4-h"><span class="sheet-n" aria-hidden="true">IV</span>Региональные особенности</h2>
+  </header>
+  <ul class="feats" id="fcards"></ul>
+</section>
+
+<div class="sheet-rule sheet-rule--cone" aria-hidden="true"><span data-orn="divider"></span></div>
+
+<!-- ================= V · Аналитика и прогнозы ================= -->
+<section class="sheet" id="s5" aria-labelledby="s5-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s5-h"><span class="sheet-n" aria-hidden="true">V</span>Аналитика и&nbsp;прогнозы</h2>
+  </header>
+  <div class="analytics">
+    <div class="thesis" id="thesis"></div>
+    <figure class="chart forecast" id="forecast">
+      <figcaption class="chart__cap" id="forecast-h">Объём мирового рынка хмеля, млрд&nbsp;долл. США&nbsp;— прогноз НИР</figcaption>
+      <p class="forecast__take" id="forecast-take"></p>
+      <div class="forecast__chart" id="forecast-chart"></div>
+      <p class="footnote" id="forecast-note"></p>
+    </figure>
+  </div>
+</section>
+
+<div class="sheet-rule" aria-hidden="true"></div>
+
+<!-- ================= VI · Калькулятор ёмкости рынка ================= -->
+<section class="sheet" id="s6" aria-labelledby="s6-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s6-h"><span class="sheet-n" aria-hidden="true">VI</span>Калькулятор ёмкости рынка</h2>
+    <p class="lead" id="calc-text">В&nbsp;соответствии с&nbsp;ТЗ, расчёт ёмкости рынка производится с&nbsp;учётом зональности, площади насаждений и&nbsp;урожайности.</p>
+  </header>
+  <form class="calc" id="calc" novalidate autocomplete="off" aria-describedby="calc-text"></form>
+</section>
+
+<div class="sheet-rule" aria-hidden="true"></div>
+
+<!-- ================= VII · Технологическая карта ================= -->
+<section class="sheet" id="s7" aria-labelledby="s7-h">
+  <header class="sheet-head sheet-head--act">
+    <div>
+      <h2 class="sheet-head__h" id="s7-h"><span class="sheet-n" aria-hidden="true">VII</span>Технологическая карта производства экологически чистого хмелесырья</h2>
+      <p class="lead" id="techmap-sub">Основные этапы возделывания и&nbsp;переработки хмеля</p>
+    </div>
+    <div class="techtable__actions">
+      <button class="btn btn--secondary btn--sm" type="button" id="csv-btn">
+        <svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M3 1.5h7l3 3v10H3Z" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M10 1.5v3h3M5 7.5h6M5 10h6M5 12.5h6M8 7.5v5" fill="none" stroke="currentColor" stroke-width=".9"/></svg>
+        Скачать CSV (Excel)
+      </button>
+      <button class="btn btn--secondary btn--sm" type="button" id="print-btn">
+        <svg class="ic" viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M4 6V1.5h8V6M4 12H2V6h12v6h-2" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linejoin="round"/><path d="M4 9.5h8v5H4Z" fill="none" stroke="currentColor" stroke-width="1.1"/><path d="M6 11.5h4M6 13h3" stroke="currentColor" stroke-width=".8"/></svg>
+        Печать
+      </button>
+    </div>
+  </header>
+  <p class="csv-note" id="csv-note" aria-live="polite"></p>
+  <div class="tbl-wrap">
+    <table class="tbl tbl--tech" id="techmap-table"></table>
+  </div>
+  <ol class="timeline" id="timeline" aria-label="Этапы технологической карты"></ol>
+</section>
+
+<div class="sheet-rule sheet-rule--cone" aria-hidden="true"><span data-orn="divider"></span></div>
+
+<!-- ================= VIII · Методические рекомендации ================= -->
+<section class="sheet" id="s8" aria-labelledby="s8-h">
+  <header class="sheet-head">
+    <h2 class="sheet-head__h" id="s8-h"><span class="sheet-n" aria-hidden="true">VIII</span>Ключевые методические рекомендации</h2>
+    <p class="lead" id="recs-intro"></p>
+  </header>
+  <ol class="recs" id="recs"></ol>
+</section>
+
+</main>
+
+<footer class="binding" id="team">
+  <div class="binding__in">
+    <div class="binding__mark"></div>
+    <section class="binding__team" aria-labelledby="team-h">
+      <h2 class="binding__h" id="team-h">Разработчики</h2>
+      <ul class="devs" id="devs"><li>Хоружий Л.И.</li><li>Лебедев К.А.</li><li>Джикия М.К.</li><li>Джикия К.А.</li></ul>
+    </section>
+    <div class="binding__nir">
+      <p class="binding__k">Научно-исследовательская работа</p>
+      <p class="binding__title" id="foot-nir">«Формирование и&nbsp;развитие хмелепродуктового подкомплекса (ХПП) в&nbsp;условиях цифровой трансформации и&nbsp;импортозамещения (1&nbsp;этап)»</p>
+      <p class="binding__meta"><span id="foot-head">Руководитель&nbsp;— Хоружий&nbsp;Л.И.</span> · <span id="foot-year">2026</span></p>
+    </div>
+  </div>
+  <p class="binding__colophon"><span>Все цифры и&nbsp;формулировки&nbsp;— из&nbsp;материалов НИР; <span aria-hidden="true">*</span>&nbsp;— рассчитано по&nbsp;данным атласа.</span> <a href="#top">Наверх <span aria-hidden="true">↑</span></a></p>
+</footer>
+
+<!-- ================= Режим карты «Атлас» (полноэкранный) ================= -->
+<div class="amap" id="amap" hidden role="dialog" aria-modal="true" aria-labelledby="amap-h">
+  <div class="amap__bg" aria-hidden="true"></div>
+  <header class="amap__bar">
+    <h2 class="amap__h" id="amap-h" tabindex="-1">Атлас <i>· мировое производство хмеля</i></h2>
+    <div class="amap__ctrls">
+      <div class="seg amap__views" role="group" aria-label="Показать на карте">
+        <button type="button" data-view="world" aria-pressed="true">Весь мир</button>
+        <button type="button" data-view="europe" aria-pressed="false">Европа</button>
+        <button type="button" data-view="usa" aria-pressed="false">США</button>
+        <button type="button" data-view="russia" aria-pressed="false">Россия</button>
+      </div>
+      <div class="seg amap__layers" role="radiogroup" aria-label="Что показать">
+        <button type="button" role="radio" data-layer="production" aria-checked="true">Производство</button>
+        <button type="button" role="radio" data-layer="trade" aria-checked="false">Торговые потоки</button>
+      </div>
+    </div>
+    <button class="btn btn--secondary btn--sm amap__close" type="button" data-close>
+      <svg class="ic" viewBox="0 0 14 14" aria-hidden="true" focusable="false"><path d="M2.5 2.5l9 9M11.5 2.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      Закрыть
+    </button>
+  </header>
+  <div class="amap__body">
+    <div class="amap__stage" id="amap-stage">
+      <canvas class="amap__canvas" id="amap-canvas" tabindex="0" role="application" aria-roledescription="карта"
+        aria-label="Карта мира с 18 регионами производства хмеля. Колёсико мыши или плюс и минус — приближение, стрелки — сдвиг. Список регионов — справа."></canvas>
+      <div class="amap__tip" id="amap-tip" hidden></div>
+      <div class="amap__zoom" role="group" aria-label="Масштаб">
+        <button type="button" data-zoom="in" aria-label="Приблизить">+</button>
+        <button type="button" data-zoom="out" aria-label="Отдалить">−</button>
+        <button type="button" data-zoom="reset" aria-label="Показать весь мир"><svg viewBox="0 0 14 14" aria-hidden="true" focusable="false"><circle cx="7" cy="7" r="5.2" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M1.8 7h10.4M7 1.8c-2.6 2.8-2.6 7.6 0 10.4M7 1.8c2.6 2.8 2.6 7.6 0 10.4" fill="none" stroke="currentColor" stroke-width=".9"/></svg></button>
+      </div>
+      <p class="amap__legend" id="amap-legend"></p>
+    </div>
+    <aside class="amap__side" id="amap-side" aria-label="Регионы атласа">
+      <div class="amap__listview" id="amap-listview">
+        <label class="amap__search">
+          <span class="sr-only">Найти регион или страну</span>
+          <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><circle cx="7" cy="7" r="4.8" fill="none" stroke="currentColor" stroke-width="1.3"/><path d="M10.5 10.5 14 14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <input type="search" id="amap-q" placeholder="Найти регион или страну" autocomplete="off">
+        </label>
+        <div class="seg amap__sort" role="radiogroup" aria-label="Порядок списка">
+          <button type="button" role="radio" data-sort="t" aria-checked="true">По объёму</button>
+          <button type="button" role="radio" data-sort="name" aria-checked="false">А–Я</button>
+          <button type="button" role="radio" data-sort="country" aria-checked="false">По стране</button>
+        </div>
+        <ol class="amap__list" id="amap-list"></ol>
+        <p class="amap__sum"><span>Сумма по&nbsp;18 регионам<span class="fn" aria-hidden="true" title="Рассчитано по данным атласа">*</span></span><b>119&nbsp;939&nbsp;т/год</b></p>
+        <p class="footnote"><span aria-hidden="true">*</span> Рассчитано по&nbsp;данным атласа.</p>
+      </div>
+      <div class="amap__detail" id="amap-detail" hidden></div>
+    </aside>
+  </div>
+</div>
+
+<div class="sr-only" aria-live="polite" id="live"></div>
+<noscript><p class="noscript">Атлас собирается из&nbsp;файла данных с&nbsp;помощью JavaScript: без него не&nbsp;работают глобус, графики, калькулятор, таблицы и&nbsp;большая часть текстов. Включите JavaScript в&nbsp;настройках браузера и&nbsp;обновите страницу.</p></noscript>
+
+<script src="assets/js/guard.js?v=hop30"></script>
+<script src="assets/vendor/d3-array.min.js?v=hop30"></script>
+<script src="assets/vendor/d3-geo.min.js?v=hop30"></script>
+<script src="assets/vendor/topojson-client.min.js?v=hop30"></script>
+<script src="assets/vendor/world-110m.js?v=hop30"></script>
+<script src="assets/data/atlas-data.js?v=hop30"></script>
+<script src="assets/js/util.js?v=hop30"></script>
+<script src="assets/js/art.js?v=hop30"></script>
+<script src="assets/js/globe/world.js?v=hop30"></script>
+<script src="assets/js/globe/sprites.js?v=hop30"></script>
+<script src="assets/js/globe/base.js?v=hop30"></script>
+<script src="assets/js/globe/trellis.js?v=hop30"></script>
+<script src="assets/js/globe/flows.js?v=hop30"></script>
+<script src="assets/js/globe/labels.js?v=hop30"></script>
+<script src="assets/js/globe/camera.js?v=hop30"></script>
+<script src="assets/js/globe/ring.js?v=hop30"></script>
+<script src="assets/js/globe/index.js?v=hop30"></script>
+<script src="assets/js/ornaments.js?v=hop30"></script>
+<script src="assets/js/nav.js?v=hop30"></script>
+<script src="assets/js/stage.js?v=hop30"></script>
+<script src="assets/js/hero.js?v=hop30"></script>
+<script src="assets/js/production.js?v=hop30"></script>
+<script src="assets/js/trade.js?v=hop30"></script>
+<script src="assets/js/products.js?v=hop30"></script>
+<script src="assets/js/regions.js?v=hop30"></script>
+<script src="assets/js/forecast.js?v=hop30"></script>
+<script src="assets/js/calculator.js?v=hop30"></script>
+<script src="assets/js/techmap.js?v=hop30"></script>
+<script src="assets/js/recommendations.js?v=hop30"></script>
+<script src="assets/js/print.js?v=hop30"></script>
+<script src="assets/js/vinebtn.js?v=hop30"></script>
+<script src="assets/js/atlasmap.js?v=hop30"></script>
+<script src="assets/js/main.js?v=hop30"></script>
+</body>
+</html>
